@@ -6,12 +6,15 @@
         <item name="colorSecondary">@color/accent</item>
         <item name="colorSecondaryVariant">@color/accent</item>
         <item name="colorOnSecondary">@color/main</item>
+        <item name="colorSurface">@color/accent</item>
+        <item name="colorOnSurface">@color/main</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:textColor">@color/accent</item>
         <item name="android:textColorPrimary">@color/accent</item>
         <item name="android:textColorSecondary">@color/accent</item>
         <item name="android:textColorTertiary">@color/accent</item>
+        <item name="boxBackgroundColor">@color/main</item>
     </style>
 
     <style name="Theme.Ecumeno.NoActionBar">

@@ -1,5 +1,6 @@
 package com.ecumeno.data.local.database
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -33,7 +34,11 @@ class DatabaseHelper(private val context: Context, private val dbName: String, p
             if (dbFile.name.contains("prayers")){
                 localeName = "_$confession$localeName"
             }
-            val dbAssetName = dbName.substringBeforeLast(".") + localeName + dbName.substringAfterLast(".")
+            val dbAssetName = if (!dbFile.name.contains("user")){
+                dbName.substringBeforeLast(".") + localeName + dbName.substringAfterLast(".")
+            } else {
+                "user_pr.db"
+            }
             context.assets.open(dbAssetName).use { input ->
                 FileOutputStream(dbFile).use { output ->
                     input.copyTo(output)
@@ -104,5 +109,23 @@ class DatabaseHelper(private val context: Context, private val dbName: String, p
             }
         }
         return prayers
+    }
+
+    fun insertPrayer(prayerName: String, text: String): Long {
+        val nextPosition = readableDatabase.rawQuery("SELECT COALESCE(MAX(prayer_position), -1) + 1 FROM prayers", null
+        ).use { cursor ->
+            if (cursor.moveToFirst()) cursor.getInt(0) else 1
+        }
+        val values = ContentValues().apply {
+            put("prayer_name", prayerName)
+            put("text", text)
+            put("category_number", -2)
+            put("prayer_position", nextPosition)
+        }
+        return writableDatabase.insert("prayers", null, values)
+    }
+
+    fun deletePrayer(position: Int) {
+        writableDatabase.delete("prayers", "prayer_position = ?", arrayOf(position.toString()))
     }
 }

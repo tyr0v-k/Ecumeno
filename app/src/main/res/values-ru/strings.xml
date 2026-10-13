@@ -41,7 +41,15 @@
     <string name="deceased_parents">Имена усопших родителей</string>
     <string name="deceased_relatives">Имена усопших ближних</string>
     <string name="saints">Имена святых угодников</string>
-
+    <string name="cancel">Отмена</string>
+    <string name="delete">Удалить</string>
+    <string name="save">Сохранить</string>
+    <string name="add_prayer">Добавление молитвы</string>
+    <string name="delete_prayer">Удаление молитвы</string>
+    <string name="cannot_undone">Это действие нельзя отменить</string>
+    <string name="prayer_name_hint">Название молитвы</string>
+    <string name="prayer_text_hint">Текст молитвы.</string>
+    <string name="prayer_text_help">Для разделения абзацев используйте /n, для подстановки имен духовного отца, живых родителей, живых ближних, усопших родителей, усопших ближних и святых угодников используйте CONFESSOR_NAME, LIVING_PARENTS, LIVING_RELATIVES, DECEASED_PARENTS, DECEASED_RELATIVES, SAINTS_NAMES соответственно.</string>
 
     <string name="fast_no_fast">Поста нет</string>
     <string name="fast_continuous_week">Сплошная седмица, поста нет</string>

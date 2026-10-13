@@ -15,10 +15,9 @@
             android:id="@+id/prevMonth"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@android:drawable/arrow_down_float"
-            android:rotation="90"
+            android:src="@drawable/ic_arrow"
             android:background="?attr/selectableItemBackgroundBorderless"
-            app:tint="@color/accent" />
+            app:tint="@color/accent"/>
         <TextView
             android:id="@+id/monthTitle"
             android:layout_width="0dp"
@@ -31,10 +30,11 @@
             android:id="@+id/nextMonth"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@android:drawable/arrow_down_float"
-            android:rotation="270"
+            android:src="@drawable/ic_arrow"
+            android:rotation="180"
             android:background="?attr/selectableItemBackgroundBorderless"
-            app:tint="@color/accent" />
+            app:tint="@color/accent"
+            />
     </LinearLayout>
     <View
         android:layout_width="match_parent"

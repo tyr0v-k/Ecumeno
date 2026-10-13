@@ -2,6 +2,7 @@ package com.ecumeno.ui.reading.reader
 
 data class ReaderUiState(
     val isBible: Boolean = false,
+    val isUserPrayer: Boolean = false,
     val chapters: List<String> = emptyList(),
     val selectedChapterPosition: Int = 0,
     val content: String = "",

@@ -18,7 +18,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ecumeno.R
+import com.ecumeno.databinding.DialogAddPrayerBinding
 import com.ecumeno.databinding.FragmentReaderBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 
 class ReaderFragment : Fragment() {
@@ -149,9 +151,48 @@ class ReaderFragment : Fragment() {
 
                     binding.btnTextPlus.isEnabled = state.isPlusEnabled
                     binding.btnTextPlus.alpha = if (state.isPlusEnabled) 1f else 0.1f
+
+                    if (state.isUserPrayer) {
+                        binding.fabAdd.visibility = View.VISIBLE
+                        binding.fabRemove.visibility = View.VISIBLE
+
+                        binding.fabAdd.setOnClickListener {
+                            showAddDialog()
+                        }
+                        binding.fabRemove.setOnClickListener {
+                            showDeleteDialog()
+                        }
+                    }
                 }
             }
         }
+    }
+
+    private fun showAddDialog(){
+        val dialogBinding = DialogAddPrayerBinding.inflate(layoutInflater)
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.add_prayer))
+            .setView(dialogBinding.root)
+            .setPositiveButton(getString(R.string.save)) {_, _ ->
+                val name = dialogBinding.etPrayerName.text.toString()
+                val text = dialogBinding.etPrayerText.text.toString()
+                if (name.isNotEmpty() && text.isNotEmpty()){
+                    viewModel.insertPrayer(name, text)
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
+    }
+
+    private fun showDeleteDialog(){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.delete_prayer))
+            .setMessage(getString(R.string.cannot_undone))
+            .setPositiveButton(getString(R.string.delete)) {_, _ ->
+                viewModel.deletePrayer(viewModel.uiState.value.selectedChapterPosition)
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
     }
 
     override fun onDestroyView() {

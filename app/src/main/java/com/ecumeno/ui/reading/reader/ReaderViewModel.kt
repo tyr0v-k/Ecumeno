@@ -88,6 +88,11 @@ class ReaderViewModel(application: Application) : AndroidViewModel(application) 
             chapters = prayersList,
             content = firstPrayerContent
         )
+        if (number == -2) {
+            _uiState.value = _uiState.value.copy(
+                isUserPrayer = true
+            )
+        }
     }
 
     private fun initializeFontSize() {
@@ -192,5 +197,22 @@ class ReaderViewModel(application: Application) : AndroidViewModel(application) 
     override fun onCleared() {
         super.onCleared()
         dbHelper?.close()
+    }
+
+    fun insertPrayer(name: String, text: String) {
+        viewModelScope.launch {
+            dbHelper?.insertPrayer(name, text)
+            initializePrayers(-2)
+        }
+    }
+
+    fun deletePrayer(position: Int) {
+        viewModelScope.launch {
+            dbHelper?.deletePrayer(position)
+            _uiState.value = _uiState.value.copy(
+                selectedChapterPosition = 0
+            )
+            initializePrayers(-2)
+        }
     }
 }

@@ -37,15 +37,44 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/accent"/>
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never">
-        <TextView
-            android:id="@+id/textViewContent"
+        android:orientation="vertical"
+        >
+        <ScrollView
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+            <TextView
+                android:id="@+id/textViewContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:padding="18dp"/>
+        </ScrollView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabRemove"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:padding="18dp"/>
-    </ScrollView>
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/delete_prayer"
+            android:src="@drawable/ic_minus"
+            android:visibility="gone"
+            android:elevation="0dp"
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/add_prayer"
+            android:src="@drawable/ic_plus"
+            android:visibility="gone"
+            android:elevation="0dp"
+            />
+    </FrameLayout>
 </LinearLayout>

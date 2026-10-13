@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.ecumeno.EcumenoApp
 import com.ecumeno.data.local.database.DatabaseHelper
 import com.ecumeno.core.domain.Confession
+import com.ecumeno.data.local.database.entities.Category
 import com.ecumeno.data.local.preferences.PreferencesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -74,7 +75,8 @@ class BooksViewModel(
                 }
                 preferencesRepository.setBibleCleared(false)
             } else {
-                val categories = dbHelper.getCategories()
+                val categories = dbHelper.getCategories().toMutableList()
+                categories.add(Category(-2, "..."))
                 _uiState.value = BooksUiState(
                     items = categories.map { it.name },
                     itemNumbers = categories.map { it.categoryNumber },
@@ -98,10 +100,17 @@ class BooksViewModel(
             else{
                 preferencesRepository.setPrayersCleared(false)
             }
-            _uiState.value = _uiState.value.copy(
-                dbName = dbName,
-                itemNumber = itemNumber
-            )
+            if (itemNumber == -2){
+                _uiState.value = _uiState.value.copy(
+                    dbName = "user_pr.db",
+                    itemNumber = itemNumber
+                )
+            } else{
+                _uiState.value = _uiState.value.copy(
+                    dbName = dbName,
+                    itemNumber = itemNumber
+                )
+            }
         }
     }
 
