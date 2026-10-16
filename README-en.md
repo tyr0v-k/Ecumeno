@@ -32,15 +32,18 @@
 
 <h3>Features</h3>
 <ul>
-  <li><b>Select a denomination</b>: The list of Bible books, holidays and fasts, and the type of rosary and prayer book depend on the denomination </li>
-  <li><b>Localization:</b> The app fully supports both Russian and English </li>
+  <li><b>Select a denomination</b>: The list of Bible books, holidays and fasts, and the types of rosary and prayer book depend on the denomination </li>
+  <li><b>Offline use:</b> The app has no internet access; all data stays on the user's device </li>
+  <li><b>Localization:</b> The app fully supports both Russian and English (also has Russian with Church Slavonic texts) </li>
   <li><b>Themes:</b> The app fully supports dark and light themes (you can set a system or specific one) </li>
   <li><b>Adaptive design:</b> The fragments are adapted for different screen orientations </li>
   <li><b>Notifications:</b> Support for timed notifications with information about the current day (holidays, fasting status) is available, can be enabled in the settings </li>
-  <li><b>Prayer Rule:</b> Each denomination has a rosary with a unique prayer rule and structure (can be disabled in the settings)</li>
-  <li><b>Interactivity:</b> he rosary has an animated visualization, is controlled by swiping or the edge keys, and vibrates </li>
-  <li><b>Font Size:</b> The font size is adjustable in the reading module </li>
-  <li><b>Bookmark:</b> When reading the Bible, the last opened book and chapter is saved for restore the next time the app is opened </li>
+  <li><b>Prayer rule:</b> Each denomination has a rosary with a unique prayer rule and structure (can be disabled in the settings) </li>
+  <li><b>Interactivity:</b> The rosary has an animated visualization, is controlled by swiping or the edge keys, and vibrates </li>
+  <li><b>Adjustable font size:</b> The font size is adjustable in the reading module. The setting applies to both the prayer book and the Bible </li>
+  <li><b>Reading progress:</b> When reading the Bible, the last opened book and chapter is saved for restore the next time the app is opened </li>
+  <li><b>Diptych:</b> Orthodox Christians can add the names of their spiritual father, parents and relatives (living and deceased), as well as selected saints, in the settings. These names are inserted into the prayer texts </li>
+  <li><b>Custom prayers:</b> You can add your own prayers if the ones included by default aren't enough. They are stored in a separate database and remain saved when you change the settings </li>
 </ul>
 
 <h3>Technologies and architecture</h3>
@@ -78,7 +81,7 @@
 </ol>
 
 <pre>
-  <code>git clone https://github.com/tyr0v-k/Ecumeno_new.git</code>
+  <code>git clone https://github.com/tyr0v-k/Ecumeno.git</code>
 </pre>
 
 <ol start="2">
@@ -99,7 +102,7 @@
 
 <h2>Download</h2>
 <p>
-  <a href="https://github.com/tyr0v-k/Ecumeno_new/releases">
+  <a href="https://github.com/tyr0v-k/Ecumeno/releases">
     <img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" height="80" alt="Get it on GitHub" />
   </a>
 </p>

@@ -48,7 +48,7 @@
     <string name="delete_prayer">Delete a prayer</string>
     <string name="cannot_undone">This action cannot be undone</string>
     <string name="prayer_name_hint">Prayer name</string>
-    <string name="prayer_text_hint">Prayer text.</string>
+    <string name="prayer_text_hint">Prayer text</string>
     <string name="prayer_text_help">Use /n to separate paragraphs; use CONFESSOR_NAME, LIVING_PARENTS, LIVING_RELATIVES, DECEASED_PARENTS, DECEASED_RELATIVES, and SAINTS_NAMES respectively to insert the names of your spiritual father, living parents, living relatives, deceased parents, deceased relatives, and saints.</string>
     
     <string name="fast_no_fast">No fast</string>
