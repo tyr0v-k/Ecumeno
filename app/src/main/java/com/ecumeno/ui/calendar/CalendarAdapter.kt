@@ -44,27 +44,6 @@ class CalendarAdapter(private val onDateClick: (CalendarDay) -> Unit) : ListAdap
                 binding.root.background = null
                 binding.root.setOnClickListener(null)
             } else{
-                if (day.date == selectedDate?.date) {
-                    binding.root.setBackgroundResource(R.drawable.selected_day_bg)
-                    binding.dayNumber.setTextColor(
-                        binding.root.context.getColor(R.color.main)
-                    )
-                } else {
-                    binding.root.background = null
-                    binding.dayNumber.setTextColor(
-                        binding.root.context.getColor(R.color.accent)
-                    )
-                }
-
-                if (day.isToday) {
-                    binding.dayNumber.setBackgroundResource(R.drawable.today_circle)
-                    binding.dayNumber.setTextColor(
-                        binding.root.context.getColor(R.color.main)
-                    )
-                } else {
-                    binding.dayNumber.background = null
-                }
-
                 if (day.holidays.isNotEmpty()) {
                     val holiday = day.holidays.first()
                     binding.holidayIndicator.visibility = View.VISIBLE
@@ -77,6 +56,39 @@ class CalendarAdapter(private val onDateClick: (CalendarDay) -> Unit) : ListAdap
                     )
                 } else {
                     binding.holidayIndicator.visibility = View.GONE
+                }
+
+                if (day.date == selectedDate?.date) {
+                    binding.root.setBackgroundResource(R.drawable.selected_day_bg)
+                    binding.holidayIndicator.background.setTint(
+                        binding.root.context.getColor(R.color.main)
+                    )
+                    binding.fastIndicator.background.setTint(
+                        binding.root.context.getColor(R.color.main),
+                    )
+                    binding.dayNumber.setTextColor(
+                        binding.root.context.getColor(R.color.main)
+                    )
+                } else {
+                    binding.root.background = null
+                    binding.holidayIndicator.background.setTint(
+                        binding.root.context.getColor(R.color.accent)
+                    )
+                    binding.fastIndicator.background.setTint(
+                        binding.root.context.getColor(R.color.accent),
+                    )
+                    binding.dayNumber.setTextColor(
+                        binding.root.context.getColor(R.color.accent)
+                    )
+                }
+
+                if (day.isToday) {
+                    binding.dayNumber.setBackgroundResource(R.drawable.today_circle)
+                    binding.dayNumber.setTextColor(
+                        binding.root.context.getColor(R.color.main)
+                    )
+                } else {
+                    binding.dayNumber.background = null
                 }
 
                 binding.fastIndicator.visibility = when (day.fastLevel) {
