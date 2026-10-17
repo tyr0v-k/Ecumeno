@@ -15,28 +15,29 @@
             android:gravity="center"
             android:textSize="16sp" />
         <LinearLayout
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
             android:gravity="center"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true">
             <View
                 android:id="@+id/holidayIndicator"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:background="@color/holiday_great" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_big_feast"
+                />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
             android:gravity="center"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true">
             <View
                 android:id="@+id/fastIndicator"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:background="@color/fast_color" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_fast" />
         </LinearLayout>
     </RelativeLayout>
     <TextView

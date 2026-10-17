@@ -68,20 +68,13 @@ class CalendarAdapter(private val onDateClick: (CalendarDay) -> Unit) : ListAdap
                 if (day.holidays.isNotEmpty()) {
                     val holiday = day.holidays.first()
                     binding.holidayIndicator.visibility = View.VISIBLE
-                    binding.holidayIndicator.setBackgroundColor(
+                    binding.holidayIndicator.setBackgroundResource(
                         when (holiday.priority) {
-                            0, 1 -> binding.root.context.getColor(R.color.holiday_great)
-                            2 -> binding.root.context.getColor(R.color.holiday_middle)
-                            else -> binding.root.context.getColor(R.color.holiday_small)
+                            0, 1 -> R.drawable.ic_big_feast
+                            2 -> R.drawable.ic_medium_feast
+                            else -> R.drawable.ic_small_feast
                         }
                     )
-                    val size = (when (holiday.priority){
-                        0, 1 -> 10
-                        2 -> 8
-                        else -> 6
-                    } * Resources.getSystem().displayMetrics.density).toInt()
-                    binding.holidayIndicator.layoutParams.height = size
-                    binding.holidayIndicator.layoutParams.width = size
                 } else {
                     binding.holidayIndicator.visibility = View.GONE
                 }
