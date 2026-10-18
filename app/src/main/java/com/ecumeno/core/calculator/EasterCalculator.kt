@@ -376,8 +376,8 @@ object EasterCalculator {
 
     private fun isChristmasFast(date: LocalDate, year: Int): Boolean {
         val start = LocalDate.of(year, 11, 28)
-        val end = LocalDate.of(year + 1, 1, 6)
-        return (!date.isBefore(start) && !date.isAfter(end)) && date.year == year
+        val end = LocalDate.of(year, 1, 6)
+        return (!date.isBefore(start) || !date.isAfter(end)) && date.year == year
     }
 
     private fun isPeterFast(date: LocalDate, easterDate: LocalDate): Boolean {

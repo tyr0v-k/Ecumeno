@@ -54,8 +54,8 @@
     <string name="fast_no_fast">No fast</string>
     <string name="fast_continuous_week">Continuous week, no fast</string>
     <string name="fast_xerophagy">Xerophagy</string>
-    <string name="fast_fish">Fish</string>
-    <string name="fast_no_oil">No oil</string>
+    <string name="fast_fish">Fish allowed</string>
+    <string name="fast_no_oil">Food without oil</string>
     <string name="fast_strict">Fast</string>
     <string name="fast_oil_allowed">Oil allowed</string>
     <string name="abstinence">Abstinence</string>

@@ -54,10 +54,10 @@
     <string name="fast_no_fast">Поста нет</string>
     <string name="fast_continuous_week">Сплошная седмица, поста нет</string>
     <string name="fast_xerophagy">Сухоядение</string>
-    <string name="fast_fish">Рыба</string>
-    <string name="fast_no_oil">Без масла</string>
+    <string name="fast_fish">Рыба разрешена</string>
+    <string name="fast_no_oil">Пища без масла</string>
     <string name="fast_strict">Пост</string>
-    <string name="fast_oil_allowed">С маслом</string>
+    <string name="fast_oil_allowed">Пища с маслом</string>
     <string name="abstinence">Воздержание</string>
 
     <string name="christmas">Рождество Христово</string>
