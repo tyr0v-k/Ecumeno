@@ -12,39 +12,48 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Android-8.0%2B-brightgreen?style=for-the-badge&logo=android&logoColor=white">
-  <img src="https://img.shields.io/badge/Kotlin-2.1.x-purple?style=for-the-badge&logo=kotlin&logoColor=white">
-  <img src="https://img.shields.io/badge/Platform-Android-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Android-8.0%2B-lightgrey?style=for-the-badge&logo=android&logoColor=white" alt="Android 8.0+">
+  <img src="https://img.shields.io/badge/Kotlin-2.1.x-lightgrey?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin 2.1.x">
+  <img src="https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge" alt="MIT License">
 </p>
 
 <h2>About the project</h2>
 <p>
-  This app was developed as part of a final thesis and is designed to support the user's personal spiritual life, taking into account the specifics of their denomination.
+  This app is designed to support the user's personal spiritual life, taking into account the specifics of their denomination.
   It is aimed at christians and supports three denominations: Orthodoxy, Catholicism, and Lutheranism.
 </p>
 
 <h3>Main functionality</h3>
 <ul>
-  <li><b>Calendar</b></li>
+  <li><b>Calendar (concise, suitable for the laity)</b></li>
   <li><b>Bible/Prayer Book</b></li>
   <li><b>Rosary</b></li>
 </ul>
 
 <h3>Features</h3>
 <ul>
-  <li><b>Select a denomination</b>: The list of Bible books, holidays and fasts, and the types of rosary and prayer book depend on the denomination </li>
-  <li><b>Offline use:</b> The app has no internet access; all data stays on the user's device </li>
-  <li><b>Localization:</b> The app fully supports both Russian and English (also has Russian with Church Slavonic texts) </li>
-  <li><b>Themes:</b> The app fully supports dark and light themes (you can set a system or specific one) </li>
-  <li><b>Adaptive design:</b> The fragments are adapted for different screen orientations </li>
-  <li><b>Notifications:</b> Support for timed notifications with information about the current day (holidays, fasting status) is available, can be enabled in the settings </li>
-  <li><b>Prayer rule:</b> Each denomination has a rosary with a unique prayer rule and structure (can be disabled in the settings) </li>
-  <li><b>Interactivity:</b> The rosary has an animated visualization, is controlled by swiping or the edge keys, and vibrates </li>
-  <li><b>Adjustable font size:</b> The font size is adjustable in the reading module. The setting applies to both the prayer book and the Bible </li>
-  <li><b>Reading progress:</b> When reading the Bible, the last opened book and chapter is saved for restore the next time the app is opened </li>
-  <li><b>Diptych:</b> Orthodox Christians can add the names of their spiritual father, parents and relatives (living and deceased), as well as selected saints, in the settings. These names are inserted into the prayer texts </li>
-  <li><b>Custom prayers:</b> You can add your own prayers if the ones included by default aren't enough. They are stored in a separate database and remain saved when you change the settings </li>
+  <li><b>Select a denomination</b>: The list of Bible books, holidays and fasts, and the types of rosary and prayer book depend on the denomination</li>
+  <li><b>Offline use:</b> The app has no internet access; all data stays on the user's device</li>
+  <li><b>Localization:</b> The app fully supports both Russian and English (also has Russian with Church Slavonic texts)</li>
+  <li><b>Notifications:</b> Support for timed notifications with information about the current day (holidays, fasting status) is available, can be enabled in the settings</li>
+  <li><b>Prayer rule:</b> Each denomination has a rosary with their own prayer rule and structure (can be disabled in the settings)</li>
+  <li><b>Interactivity:</b> The rosary has an animated visualization, is controlled by swiping or the edge keys, and vibrates</li>
+  <li><b>Adjustable font size:</b> The font size is adjustable in the reading module. The setting applies to both the prayer book and the Bible</li>
+  <li><b>Reading progress:</b> When reading the Bible, the last opened book and chapter is saved for restore the next time the app is opened</li>
+  <li><b>Diptych:</b> Orthodox Christians can add the names of their spiritual father, parents and relatives (living and deceased), as well as selected saints, in the settings. These names are inserted into the prayer texts</li>
+  <li><b>Custom prayers:</b> You can add your own prayers if the ones included by default aren't enough. They are stored in a separate database and remain saved when you change the settings</li>
 </ul>
+
+<h3>Screenshots</h3>
+<p align="center">
+  <a>
+    <img src="screenshots/screens_en_light.png" width="350" alt="Screenshots, light theme" />
+  </a>
+  &nbsp;&nbsp;
+  <a>
+    <img src="screenshots/screens_en_dark.png" width="350" alt="Screenshots, dark theme" />
+  </a>
+</p>
 
 <h3>Technologies and architecture</h3>
 <ul>
@@ -57,16 +66,15 @@
   <li><b>Database management:</b> SQLiteOpenHelper</li>
 </ul>
 
-<h3>Screenshots</h3>
-<p align="center">
-  <a>
-    <img src="screenshots/screens_en_light.jpg" width="350" alt="Screenshots, light theme" />
-  </a>
-  &nbsp;&nbsp;
-  <a>
-    <img src="screenshots/screens_en_dark.jpg" width="350" alt="Screenshots, dark theme" />
-  </a>
-</p>
+<h3>Acknowledgments / Sources</h3>
+<ul>
+  <li><b>The Bible:</b> Synodal Translation, Elizabethan Bible, and King James Version (KJV) — Public Domain (textual SQLite databases are sourced from the open modules of the <a href="https://mybible.zone/">MyBible</a> project)</li>
+  <li><b>Orthodox and Catholic Prayers (Russian and Church Slavonic):</b> Selected texts from traditional prayer books available in open sources — Public Domain</li>
+  <li><b>Catholic Prayers (English):</b> Texts from the anthology "Blessed Be God: A Complete Catholic Prayer Book" (1925 edition) — Public Domain</li>
+  <li><b>Lutheran Prayers:</b> The Small Catechism by Martin Luther — Public Domain</li>
+  <li><b>Lutheran and Catholic Prayers (Church Slavonic):</b> Translated using generative AI; the texts may contain errors</li>
+</ul>
+
 
 <h2>Build</h2>
 <h3>Build Requirements</h3>
@@ -106,6 +114,14 @@
     <img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" height="80" alt="Get it on GitHub" />
   </a>
 </p>
+
+<h2>Recommended Projects</h2>
+<ul>
+  <li><b><a href="https://mybible.zone/">MyBible</a>:</b> A powerful and versatile tool for Bible study, featuring a vast repository of modules, flexible configurations, and an open database architecture</li>
+  <li><b><a href="https://azbyka.ru/">Azbyka Very (Alphabet of Faith)</a>:</b> One of the largest Orthodox Christian portals in the Russian-speaking digital space. It includes an extensive patristic library, a liturgical calendar, and a functional system for parallel comparison of various Bible translations</li>
+  <li><b><a href="https://ruscatholic.org/">Ruscatholic.org</a>:</b> The premier Catholic information and educational portal in Russia, offering translations of classical spiritual works, catechetical materials, and its own dedicated mobile application</li>
+</ul>
+
 
 <h2>Support the developer</h2>
 <p><i>"Pray one for another, that ye may be healed. The effectual fervent prayer of a righteous man availeth much" — The Epistle of James 5:16 (KJV)</i></p>
