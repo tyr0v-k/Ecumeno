@@ -130,7 +130,7 @@ object EasterCalculator {
             "0921" to Holiday(name = "matthew", priority = 2),
             "0929" to Holiday(name = "archangels", priority = 2),
             "1018" to Holiday(name = "luke", priority = 2),
-            "1028" to Holiday(name = "simon_jude", priority = 2),
+            "1028" to Holiday(name = "simon_and_jude", priority = 2),
             "1101" to Holiday(name = "all_saints", priority = 1),
             "1111" to Holiday(name = "martin_of_tours", priority = 3),
             "1130" to Holiday(name = "andrew", priority = 2),
