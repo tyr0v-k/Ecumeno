@@ -1,4 +1,4 @@
-package com.ecumeno.ui.rosary
+package com.ecumeno.ui.beads
 
 import android.animation.Animator
 import android.animation.ValueAnimator

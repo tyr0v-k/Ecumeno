@@ -39,6 +39,20 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_fast" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+            <View
+                android:id="@+id/todayIndicator"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/today_circle"
+                android:visibility="gone"
+                />
+        </LinearLayout>
     </RelativeLayout>
     <TextView
         android:id="@+id/dayOfWeek"

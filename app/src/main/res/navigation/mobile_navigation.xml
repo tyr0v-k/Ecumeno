@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/navigation_rosary"
-        android:name="com.ecumeno.ui.rosary.RosaryFragment"
-        android:label="@string/title_rosary"
-        tools:layout="@layout/fragment_rosary" />
+        android:id="@+id/navigation_beads"
+        android:name="com.ecumeno.ui.beads.BeadsFragment"
+        android:label="@string/title_beads"
+        tools:layout="@layout/fragment_beads" />
 
     <include app:graph="@navigation/bible_graph" />
     <include app:graph="@navigation/prayers_graph" />

@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/holiday_great"
+            android:textColor="@color/red"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp" />

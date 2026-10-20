@@ -1,10 +1,10 @@
-package com.ecumeno.ui.rosary
+package com.ecumeno.ui.beads
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ecumeno.core.domain.Confession
-import com.ecumeno.ui.rosary.enums.MysteryType
-import com.ecumeno.ui.rosary.enums.PrayerType
+import com.ecumeno.ui.beads.enums.MysteryType
+import com.ecumeno.ui.beads.enums.PrayerType
 import com.ecumeno.data.local.preferences.PreferencesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,46 +12,46 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
-class RosaryViewModel(private val preferencesRepository: PreferencesRepository) : ViewModel() {
-    private lateinit var rosaryStructure: List<PrayerType>
-    private var rosaryStart = 1
-    private var rosaryLimit = 0
+class BeadsViewModel(private val preferencesRepository: PreferencesRepository) : ViewModel() {
+    private lateinit var beadsStructure: List<PrayerType>
+    private var beadsStart = 1
+    private var beadsLimit = 0
     private var currentDecade = 0
     private var currentBead = 0
     private var currentPrayerIndex = 0
     private lateinit var confession: Confession
     private var ruleEnabled: Boolean = true
-    private val _uiState = MutableStateFlow(RosaryUiState())
-    val uiState: StateFlow<RosaryUiState> = _uiState
+    private val _uiState = MutableStateFlow(BeadsUiState())
+    val uiState: StateFlow<BeadsUiState> = _uiState
 
     init {
         viewModelScope.launch {
             combine(preferencesRepository.confession, preferencesRepository.isRuleEnabled) {
                 conf, rule -> confession = Confession.fromPreferences(conf) ; ruleEnabled = rule
             }.collect {
-                resetRosary()
+                resetBeads()
             }
         }
     }
 
     fun nextBead() {
-        if(currentDecade == rosaryLimit && currentPrayerIndex == rosaryStructure.size - 1){
-            resetRosary()
+        if(currentDecade == beadsLimit && currentPrayerIndex == beadsStructure.size - 1){
+            resetBeads()
         }
         else{
             if (confession == Confession.cat && ruleEnabled){
-                if (currentPrayerIndex < rosaryStructure.size - 1) {
-                    if(currentPrayerIndex == rosaryLimit){
+                if (currentPrayerIndex < beadsStructure.size - 1) {
+                    if(currentPrayerIndex == beadsLimit){
                         currentDecade++
                     }
                     currentPrayerIndex++
                 }
                 else{
-                    currentPrayerIndex = rosaryLimit + 1
+                    currentPrayerIndex = beadsLimit + 1
                     currentDecade++
                 }
             } else{
-                if (currentPrayerIndex < rosaryStructure.size - 1) {
+                if (currentPrayerIndex < beadsStructure.size - 1) {
                     currentPrayerIndex++
                 }
                 else{
@@ -88,11 +88,11 @@ class RosaryViewModel(private val preferencesRepository: PreferencesRepository) 
         }
     }
 
-    private fun initRosaryStructure(){
+    private fun initBeadsStructure(){
         if (ruleEnabled){
             when (confession){
                 Confession.cat -> {
-                    rosaryStructure = listOf(
+                    beadsStructure = listOf(
                         PrayerType.CREED,
                         PrayerType.OUR_FATHER,
                         PrayerType.HAIL_MARY,
@@ -113,11 +113,11 @@ class RosaryViewModel(private val preferencesRepository: PreferencesRepository) 
                         PrayerType.GLORY_BE,
                         PrayerType.FATIMA_PRAYER,
                     )
-                    rosaryStart = 0
-                    rosaryLimit = 5
+                    beadsStart = 0
+                    beadsLimit = 5
                 }
                 Confession.lut -> {
-                    rosaryStructure = listOf(
+                    beadsStructure = listOf(
                         PrayerType.FRALSARKRANSEN_FIRST,
                         PrayerType.FRALSARKRANSEN_SECOND,
                         PrayerType.FRALSARKRANSEN_THIRD,
@@ -137,11 +137,11 @@ class RosaryViewModel(private val preferencesRepository: PreferencesRepository) 
                         PrayerType.FRALSARKRANSEN_TENTH,
                         PrayerType.FRALSARKRANSEN_SECOND
                     )
-                    rosaryStart = 1
-                    rosaryLimit = 0
+                    beadsStart = 1
+                    beadsLimit = 0
                 }
                 Confession.ort -> {
-                    rosaryStructure = listOf(
+                    beadsStructure = listOf(
                         PrayerType.OUR_FATHER,
                         PrayerType.JESUS_PRAYER,
                         PrayerType.JESUS_PRAYER,
@@ -154,13 +154,13 @@ class RosaryViewModel(private val preferencesRepository: PreferencesRepository) 
                         PrayerType.JESUS_PRAYER,
                         PrayerType.JESUS_PRAYER
                     )
-                    rosaryStart = 1
-                    rosaryLimit = 3
+                    beadsStart = 1
+                    beadsLimit = 3
                 }
             }
         }
         else {
-            rosaryStructure = listOf(
+            beadsStructure = listOf(
                 PrayerType.OUR_FATHER,
                 PrayerType.JESUS_PRAYER,
                 PrayerType.JESUS_PRAYER,
@@ -173,23 +173,23 @@ class RosaryViewModel(private val preferencesRepository: PreferencesRepository) 
                 PrayerType.JESUS_PRAYER,
                 PrayerType.JESUS_PRAYER
             )
-            rosaryStart = 1
-            rosaryLimit = 3
+            beadsStart = 1
+            beadsLimit = 3
         }
-        currentDecade = rosaryStart
+        currentDecade = beadsStart
     }
 
-    fun resetRosary() {
-        initRosaryStructure()
+    fun resetBeads() {
+        initBeadsStructure()
         currentPrayerIndex = 0
-        currentDecade = rosaryStart
+        currentDecade = beadsStart
         currentBead = 0
         updateDisplay()
     }
 
     private fun updateDisplay() {
         val confession = confession
-        val prayerType = rosaryStructure[currentPrayerIndex]
+        val prayerType = beadsStructure[currentPrayerIndex]
         val delimiter = prayerType != uiState.value.prayerType
         var displayBead = currentBead
         if (confession == Confession.lut && ruleEnabled) displayBead++
@@ -206,7 +206,7 @@ class RosaryViewModel(private val preferencesRepository: PreferencesRepository) 
         val beadVisibility = displayBead != 0 && !(confession == Confession.cat && currentPrayerIndex > 16)
         val hasCenterPiece = confession == Confession.cat && currentPrayerIndex > 16
         val currBead = if (!hasCenterPiece && (confession != Confession.cat || (!ruleEnabled) || (currentPrayerIndex > 5))) currentBead + 10 else currentBead
-        _uiState.value = RosaryUiState(
+        _uiState.value = BeadsUiState(
             prayerType = prayerType,
             currentDecade = currentDecade,
             currentBead = currBead,

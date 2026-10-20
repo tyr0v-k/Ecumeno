@@ -154,8 +154,8 @@ class SettingsFragment : Fragment() {
             }
         }
 
-        binding.switchRosary.setOnClickListener {
-            viewModel.onRuleSwitchChanged(binding.switchRosary.isChecked)
+        binding.switchBeads.setOnClickListener {
+            viewModel.onRuleSwitchChanged(binding.switchBeads.isChecked)
         }
 
         binding.notificationTime.setOnClickListener {
@@ -167,7 +167,7 @@ class SettingsFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.uiState.collect { state ->
                 binding.switchNotifications.isChecked = state.isNotificationEnabled
-                binding.switchRosary.isChecked = state.isRuleEnabled
+                binding.switchBeads.isChecked = state.isRuleEnabled
                 binding.notificationTime.text = state.notificationTime
                 binding.spinnerTheme.setSelection(state.selectedThemePosition)
                 binding.spinnerConfession.setSelection(state.selectedConfessionPosition)

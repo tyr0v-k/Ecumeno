@@ -27,17 +27,17 @@
 <ul>
   <li><b>Calendar (concise, suitable for the laity)</b></li>
   <li><b>Bible/Prayer Book</b></li>
-  <li><b>Rosary</b></li>
+  <li><b>Prayer Beads</b></li>
 </ul>
 
 <h3>Features</h3>
 <ul>
-  <li><b>Select a denomination</b>: The list of Bible books, holidays and fasts, and the types of rosary and prayer book depend on the denomination</li>
+  <li><b>Select a denomination</b>: The list of Bible books, holidays and fasts, and the types of prayer beads and prayer book depend on the denomination</li>
   <li><b>Offline use:</b> The app has no internet access; all data stays on the user's device</li>
   <li><b>Localization:</b> The app fully supports both Russian and English (also has Russian with Church Slavonic texts)</li>
   <li><b>Notifications:</b> Support for timed notifications with information about the current day (holidays, fasting status) is available, can be enabled in the settings</li>
-  <li><b>Prayer rule:</b> Each denomination has a rosary with their own prayer rule and structure (can be disabled in the settings)</li>
-  <li><b>Interactivity:</b> The rosary has an animated visualization, is controlled by swiping or the edge keys, and vibrates</li>
+  <li><b>Prayer rule:</b> Each denomination has a prayer beads with their own prayer rule and structure (can be disabled in the settings)</li>
+  <li><b>Interactivity:</b> The prayer beads have an animated visualization, is controlled by swiping or the edge keys, and vibrates</li>
   <li><b>Adjustable font size:</b> The font size is adjustable in the reading module. The setting applies to both the prayer book and the Bible</li>
   <li><b>Reading progress:</b> When reading the Bible, the last opened book and chapter is saved for restore the next time the app is opened</li>
   <li><b>Diptych:</b> Orthodox Christians can add the names of their spiritual father, parents and relatives (living and deceased), as well as selected saints, in the settings. These names are inserted into the prayer texts</li>

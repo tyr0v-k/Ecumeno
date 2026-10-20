@@ -13,9 +13,9 @@
         android:icon="@drawable/ic_prayer"
         android:title="@string/title_prayers" />
     <item
-        android:id="@+id/navigation_rosary"
-        android:icon="@drawable/ic_rosary"
-        android:title="@string/title_rosary" />
+        android:id="@+id/navigation_beads"
+        android:icon="@drawable/ic_beads"
+        android:title="@string/title_beads" />
     <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_settings"

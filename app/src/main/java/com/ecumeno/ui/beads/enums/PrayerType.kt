@@ -1,4 +1,4 @@
-package com.ecumeno.ui.rosary.enums
+package com.ecumeno.ui.beads.enums
 
 enum class PrayerType {
     CREED,

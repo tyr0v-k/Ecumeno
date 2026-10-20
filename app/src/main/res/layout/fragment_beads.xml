@@ -48,7 +48,7 @@
                 android:layout_marginBottom="24dp"/>
         </LinearLayout>
     </ScrollView>
-    <com.ecumeno.ui.rosary.BeadsView
+    <com.ecumeno.ui.beads.BeadsView
         android:id="@+id/beads_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -1,6 +1,5 @@
 package com.ecumeno.ui.calendar
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,6 +65,9 @@ class CalendarAdapter(private val onDateClick: (CalendarDay) -> Unit) : ListAdap
                     binding.fastIndicator.background.setTint(
                         binding.root.context.getColor(R.color.main),
                     )
+                    binding.todayIndicator.background.setTint(
+                        binding.root.context.getColor(R.color.main),
+                    )
                     binding.dayNumber.setTextColor(
                         binding.root.context.getColor(R.color.main)
                     )
@@ -77,18 +79,16 @@ class CalendarAdapter(private val onDateClick: (CalendarDay) -> Unit) : ListAdap
                     binding.fastIndicator.background.setTint(
                         binding.root.context.getColor(R.color.accent),
                     )
+                    binding.todayIndicator.background.setTint(
+                        binding.root.context.getColor(R.color.accent),
+                    )
                     binding.dayNumber.setTextColor(
                         binding.root.context.getColor(R.color.accent)
                     )
                 }
 
                 if (day.isToday) {
-                    binding.dayNumber.setBackgroundResource(R.drawable.today_circle)
-                    binding.dayNumber.setTextColor(
-                        binding.root.context.getColor(R.color.main)
-                    )
-                } else {
-                    binding.dayNumber.background = null
+                    binding.todayIndicator.visibility = View.VISIBLE
                 }
 
                 binding.fastIndicator.visibility = when (day.fastLevel) {

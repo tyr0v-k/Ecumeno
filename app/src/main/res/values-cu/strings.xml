@@ -3,7 +3,7 @@
     <string name="title_bible">Библия</string>
     <string name="title_reader">Чтение</string>
     <string name="title_calendar">Календарь</string>
-    <string name="title_rosary">Четки</string>
+    <string name="title_beads">Четки</string>
     <string name="title_prayers">Молитвы</string>
     <string name="title_settings">Настройки</string>
 
@@ -27,7 +27,7 @@
     <string name="theme_daymode">Светлая</string>
     <string name="theme_system">Системная</string>
     <string name="language">Язык</string>
-    <string name="switch_rosary">Молитвенное правило на четках</string>
+    <string name="switch_beads">Молитвенное правило на четках</string>
     <string name="reset">Сброс</string>
     <string name="personalization">Персонализация</string>
     <string name="confession">Конфессия</string>

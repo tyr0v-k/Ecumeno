@@ -1,4 +1,4 @@
-package com.ecumeno.ui.rosary
+package com.ecumeno.ui.beads
 
 import android.content.Context
 import android.os.Bundle
@@ -18,17 +18,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ecumeno.EcumenoApp
 import com.ecumeno.R
-import com.ecumeno.ui.rosary.enums.MysteryType
-import com.ecumeno.ui.rosary.enums.PrayerType
-import com.ecumeno.databinding.FragmentRosaryBinding
+import com.ecumeno.ui.beads.enums.MysteryType
+import com.ecumeno.ui.beads.enums.PrayerType
+import com.ecumeno.databinding.FragmentBeadsBinding
 import com.ecumeno.di.ViewModelFactory
 import kotlinx.coroutines.launch
 import kotlin.getValue
 
-class RosaryFragment : Fragment() {
-    private var _binding: FragmentRosaryBinding? = null
+class BeadsFragment : Fragment() {
+    private var _binding: FragmentBeadsBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: RosaryViewModel by viewModels {
+    private val viewModel: BeadsViewModel by viewModels {
         ViewModelFactory((requireActivity().application as EcumenoApp).preferencesRepository)
     }
     private lateinit var gestureDetector: GestureDetectorCompat
@@ -41,7 +41,7 @@ class RosaryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRosaryBinding.inflate(inflater, container, false)
+        _binding = FragmentBeadsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -76,7 +76,7 @@ class RosaryFragment : Fragment() {
             true
         }
 
-        binding.btnReset.setOnClickListener { viewModel.resetRosary() ; triggerVibration() }
+        binding.btnReset.setOnClickListener { viewModel.resetBeads() ; triggerVibration() }
     }
 
     override fun onDestroyView() {

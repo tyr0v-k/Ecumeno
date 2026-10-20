@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_calendar,
                 R.id.bible_graph,
                 R.id.prayers_graph,
-                R.id.navigation_rosary,
+                R.id.navigation_beads,
                 R.id.navigation_settings
             )
         )

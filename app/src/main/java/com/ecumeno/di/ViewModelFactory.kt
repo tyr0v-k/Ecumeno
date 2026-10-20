@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ecumeno.data.local.preferences.PreferencesRepository
 import com.ecumeno.ui.calendar.CalendarViewModel
-import com.ecumeno.ui.rosary.RosaryViewModel
+import com.ecumeno.ui.beads.BeadsViewModel
 
 class ViewModelFactory(
     private val preferencesRepository: PreferencesRepository,
@@ -16,9 +16,9 @@ class ViewModelFactory(
                 @Suppress("UNCHECKED_CAST")
                 CalendarViewModel(preferencesRepository) as T
             }
-            modelClass.isAssignableFrom(RosaryViewModel::class.java) -> {
+            modelClass.isAssignableFrom(BeadsViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
-                RosaryViewModel(preferencesRepository) as T
+                BeadsViewModel(preferencesRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel: ${modelClass.name}")
         }

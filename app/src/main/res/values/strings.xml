@@ -3,7 +3,7 @@
     <string name="title_bible">Bible</string>
     <string name="title_reader">Reader</string>
     <string name="title_calendar">Calendar</string>
-    <string name="title_rosary">Rosary</string>
+    <string name="title_beads">Beads</string>
     <string name="title_prayers">Prayers</string>
     <string name="title_settings">Settings</string>
 
@@ -27,7 +27,7 @@
     <string name="theme_daymode">Light</string>
     <string name="theme_system">System</string>
     <string name="language">Language</string>
-    <string name="switch_rosary">Rosary prayer rule</string>
+    <string name="switch_beads">Beads prayer rule</string>
     <string name="reset">Reset</string>
     <string name="personalization">Personalization</string>
     <string name="confession">Denomination</string>
@@ -249,5 +249,4 @@
     <string name="fralsarkransen_eight">Let me love my neighbour with Your love.</string>
     <string name="fralsarkransen_ninth">Out of the depths have I cried unto You, oh Lord. Lord, hear my voice. Do not abandon me.</string>
     <string name="fralsarkransen_tenth">Here is no time. Here is no distance. I have peace in my heart in front of You. Here I want to stay.</string>
-
 </resources>

@@ -1,9 +1,9 @@
-package com.ecumeno.ui.rosary
+package com.ecumeno.ui.beads
 
-import com.ecumeno.ui.rosary.enums.MysteryType
-import com.ecumeno.ui.rosary.enums.PrayerType
+import com.ecumeno.ui.beads.enums.MysteryType
+import com.ecumeno.ui.beads.enums.PrayerType
 
-data class RosaryUiState(
+data class BeadsUiState(
     val prayerType: PrayerType = PrayerType.OUR_FATHER,
     val currentDecade: Int = 0,
     val currentBead: Int = 0,
