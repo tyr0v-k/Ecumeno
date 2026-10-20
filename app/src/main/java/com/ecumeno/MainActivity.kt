@@ -2,9 +2,13 @@ package com.ecumeno
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.findNavController
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -20,8 +24,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.container) { _, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            // 1. Сдвигаем сам контейнер фрагментов СВЕРХУ через Margin
+            binding.navHostFragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                topMargin = insets.top
+            }
+
+            // 2. Добавляем нижней панели внутренний отступ, чтобы кнопки не улетали под нижний бар
+            binding.navView.setPadding(0, 0, 0, insets.bottom)
+
+            windowInsets
+        }
+
         val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
         val navGraph = navController.navInflater.inflate(R.navigation.mobile_navigation)
 
         if ((application as EcumenoApp).preferencesRepository.confession.value == ""){
