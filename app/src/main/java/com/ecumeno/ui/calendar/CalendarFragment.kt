@@ -90,7 +90,7 @@ class CalendarFragment : Fragment() {
                         binding.todayButton.isEnabled = true
                         binding.todayButton.setAlpha(1f)
                     }
-                    calendarAdapter.setCurrentDate(state.selectedDate)
+                    calendarAdapter.setSelectedDate(state.selectedDate?.date)
                     state.selectedDate?.let { showDateDetails(it) }
                 }
             }

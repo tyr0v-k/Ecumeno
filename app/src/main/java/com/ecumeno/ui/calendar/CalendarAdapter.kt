@@ -1,9 +1,9 @@
 package com.ecumeno.ui.calendar
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,113 +11,91 @@ import com.ecumeno.R
 import com.ecumeno.core.domain.CalendarDay
 import com.ecumeno.core.domain.FastLevel
 import com.ecumeno.databinding.CalendarDayItemBinding
+import java.time.LocalDate
 import java.time.format.TextStyle
-import java.util.Locale
 
-class CalendarAdapter(private val onDateClick: (CalendarDay) -> Unit) : ListAdapter<CalendarDay, CalendarAdapter.CalendarViewHolder>(DiffCallback()) {
-    private var selectedDate: CalendarDay? = null
-    fun setCurrentDate(date: CalendarDay?) {
+class CalendarAdapter(
+    private val onDateClick: (CalendarDay) -> Unit
+) : ListAdapter<CalendarDay, CalendarAdapter.CalendarViewHolder>(DiffCallback()) {
+
+    private var selectedDate: LocalDate? = null
+
+    fun setSelectedDate(date: LocalDate?) {
+        val old = selectedDate
+        if (old == date) return
         selectedDate = date
+        notifyDate(old)
+        notifyDate(date)
+    }
+
+    private fun notifyDate(date: LocalDate?) {
+        if (date == null) return
+        val position = currentList.indexOfFirst { it.date == date }
+        if (position != RecyclerView.NO_POSITION) notifyItemChanged(position)
     }
     inner class CalendarViewHolder(
         private val binding: CalendarDayItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(day: CalendarDay) {
+            val context = binding.root.context
+            val locale = context.resources.configuration.locales[0]
+
             binding.dayNumber.text = day.date.dayOfMonth.toString()
-            val currentLocales = AppCompatDelegate.getApplicationLocales()
-            val languageCode : String
-            if (currentLocales.isEmpty){
-                languageCode = Locale.getDefault().language
-            } else{
-                languageCode = currentLocales[0]?.language ?: "en"
-            }
-            binding.dayOfWeek.text = day.date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.forLanguageTag(languageCode))
+            binding.dayOfWeek.text = day.date.dayOfWeek.getDisplayName(TextStyle.SHORT, locale)
+
+            binding.root.background = null
+            binding.root.setOnClickListener(null)
+            binding.root.isClickable = false
+            binding.holidayIndicator.isVisible = false
+            binding.fastIndicator.isVisible = false
+            binding.todayIndicator.isVisible = false
 
             if (!day.currentMonth) {
-                binding.dayNumber.setTextColor(
-                    binding.root.context.getColor(R.color.not_available)
-                )
-                binding.holidayIndicator.visibility = View.GONE
-                binding.fastIndicator.visibility = View.GONE
-                binding.root.background = null
-                binding.root.setOnClickListener(null)
-            } else{
-                if (day.holidays.isNotEmpty()) {
-                    val holiday = day.holidays.first()
-                    binding.holidayIndicator.visibility = View.VISIBLE
-                    binding.holidayIndicator.setBackgroundResource(
-                        when (holiday.priority) {
-                            0, 1 -> R.drawable.ic_big_feast
-                            2 -> R.drawable.ic_medium_feast
-                            else -> R.drawable.ic_small_feast
-                        }
-                    )
-                } else {
-                    binding.holidayIndicator.visibility = View.GONE
-                }
+                binding.dayNumber.setTextColor(context.getColor(R.color.not_available))
+                return
+            }
 
-                if (day.date == selectedDate?.date) {
-                    binding.root.setBackgroundResource(R.drawable.selected_day_bg)
-                    binding.holidayIndicator.background.setTint(
-                        binding.root.context.getColor(R.color.main)
-                    )
-                    binding.fastIndicator.background.setTint(
-                        binding.root.context.getColor(R.color.main),
-                    )
-                    binding.todayIndicator.background.setTint(
-                        binding.root.context.getColor(R.color.main),
-                    )
-                    binding.dayNumber.setTextColor(
-                        binding.root.context.getColor(R.color.main)
-                    )
-                } else {
-                    binding.root.background = null
-                    binding.holidayIndicator.background.setTint(
-                        binding.root.context.getColor(R.color.accent)
-                    )
-                    binding.fastIndicator.background.setTint(
-                        binding.root.context.getColor(R.color.accent),
-                    )
-                    binding.todayIndicator.background.setTint(
-                        binding.root.context.getColor(R.color.accent),
-                    )
-                    binding.dayNumber.setTextColor(
-                        binding.root.context.getColor(R.color.accent)
-                    )
-                }
+            val selected = day.date == selectedDate
+            val color = context.getColor(if (selected) R.color.main else R.color.accent)
+            val tint = ColorStateList.valueOf(color)
 
-                if (day.isToday) {
-                    binding.todayIndicator.visibility = View.VISIBLE
-                }
+            if (selected) binding.root.setBackgroundResource(R.drawable.selected_day_bg)
+            binding.dayNumber.setTextColor(color)
 
-                binding.fastIndicator.visibility = when (day.fastLevel) {
-                    FastLevel.NO_FAST -> View.GONE
-                    FastLevel.CONTINUOUS_WEEK -> View.GONE
-                    else -> View.VISIBLE
-                }
-
-                binding.root.setOnClickListener {
-                    val oldDate = selectedDate
-                    onDateClick(day)
-                    selectedDate = day
-                    notifyItemChanged(adapterPosition)
-                    if (oldDate != null) {
-                        val oldPosition = currentList.indexOfFirst { it.date == oldDate.date }
-                        if (oldPosition != -1) {
-                            notifyItemChanged(oldPosition)
-                        }
+            day.holidays.minByOrNull { it.priority }?.let { holiday ->
+                binding.holidayIndicator.isVisible = true
+                binding.holidayIndicator.setBackgroundResource(
+                    when (holiday.priority) {
+                        0, 1 -> R.drawable.ic_big_feast
+                        2 -> R.drawable.ic_medium_feast
+                        else -> R.drawable.ic_small_feast
                     }
-                }
+                )
+                binding.holidayIndicator.backgroundTintList = tint
+            }
+
+            if (day.fastLevel != FastLevel.NO_FAST && day.fastLevel != FastLevel.CONTINUOUS_WEEK) {
+                binding.fastIndicator.isVisible = true
+                binding.fastIndicator.backgroundTintList = tint
+            }
+
+            if (day.isToday) {
+                binding.todayIndicator.isVisible = true
+                binding.todayIndicator.backgroundTintList = tint
+            }
+
+            binding.root.setOnClickListener {
+                if (bindingAdapterPosition == RecyclerView.NO_POSITION) return@setOnClickListener
+                setSelectedDate(day.date)
+                onDateClick(day)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         val binding = CalendarDayItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+            LayoutInflater.from(parent.context), parent, false
         )
         return CalendarViewHolder(binding)
     }
@@ -127,12 +105,10 @@ class CalendarAdapter(private val onDateClick: (CalendarDay) -> Unit) : ListAdap
     }
 
     class DiffCallback : DiffUtil.ItemCallback<CalendarDay>() {
-        override fun areItemsTheSame(oldItem: CalendarDay, newItem: CalendarDay): Boolean {
-            return oldItem.date == newItem.date
-        }
+        override fun areItemsTheSame(oldItem: CalendarDay, newItem: CalendarDay) =
+            oldItem.date == newItem.date
 
-        override fun areContentsTheSame(oldItem: CalendarDay, newItem: CalendarDay): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: CalendarDay, newItem: CalendarDay) =
+            oldItem == newItem
     }
 }
