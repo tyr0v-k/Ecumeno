@@ -70,6 +70,21 @@ class ReaderFragment : Fragment() {
         gestureDetector = GestureDetectorCompat(
             requireContext(),
             object : GestureDetector.SimpleOnGestureListener() {
+                override fun onDown(e: MotionEvent): Boolean = true
+
+                override fun onScroll(
+                    e1: MotionEvent?,
+                    e2: MotionEvent,
+                    distanceX: Float,
+                    distanceY: Float
+                ): Boolean {
+                    if (e1 != null && Math.abs(e2.x - e1.x) > Math.abs(e2.y - e1.y)) {
+                        binding.scrollViewContent.requestDisallowInterceptTouchEvent(true)
+                        return true
+                    }
+                    return false
+                }
+
                 override fun onFling(
                     e1: MotionEvent?,
                     e2: MotionEvent,
@@ -83,28 +98,22 @@ class ReaderFragment : Fragment() {
                         Math.abs(diffX) > 100 &&
                         Math.abs(velocityX) > 100
                     ) {
-                        if (diffX < 0) {
-                            viewModel.nextChapter()
-                        } else {
-                            viewModel.previousChapter()
-                        }
+                        if (diffX < 0) viewModel.nextChapter() else viewModel.previousChapter()
                         return true
                     }
                     return false
                 }
-
-                override fun onDown(e: MotionEvent): Boolean = true
             }
         )
 
-        view?.setOnTouchListener { _, event ->
-            gestureDetector.onTouchEvent(event)
-            true
-        }
-
-        binding.textViewContent.setOnTouchListener { _, event ->
-            gestureDetector.onTouchEvent(event)
-            true
+        binding.scrollViewContent.setOnTouchListener { _, event ->
+            val handled = gestureDetector.onTouchEvent(event)
+            if (event.actionMasked == MotionEvent.ACTION_UP ||
+                event.actionMasked == MotionEvent.ACTION_CANCEL
+            ) {
+                binding.scrollViewContent.requestDisallowInterceptTouchEvent(false)
+            }
+            handled
         }
     }
 
